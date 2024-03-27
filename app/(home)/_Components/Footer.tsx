@@ -11,20 +11,20 @@ const Footer = () => {
             <nav className="flex flex-wrap justify-center -mx-5 -my-2">
               <div className="px-5 py-2">
                 <a
-                  href="#"
+                  href="/About"
                   className="text-base leading-6 text-gray-500 hover:text-gray-900"
                 >
                   About
                 </a>
               </div>
-              <div className="px-5 py-2">
+              {/* <div className="px-5 py-2">
                 <a
                   href="#"
                   className="text-base leading-6 text-gray-500 hover:text-gray-900"
                 >
                   Blog
                 </a>
-              </div>
+              </div> */}
               <div className="px-5 py-2">
                 <a
                   href="#"
@@ -33,17 +33,17 @@ const Footer = () => {
                   Team
                 </a>
               </div>
-              <div className="px-5 py-2">
+              {/* <div className="px-5 py-2">
                 <a
                   href="#"
                   className="text-base leading-6 text-gray-500 hover:text-gray-900"
                 >
                   Pricing
                 </a>
-              </div>
+              </div> */}
               <div className="px-5 py-2">
                 <a
-                  href="#"
+                  href="/Contact"
                   className="text-base leading-6 text-gray-500 hover:text-gray-900"
                 >
                   Contact
@@ -58,7 +58,7 @@ const Footer = () => {
                 </a>
               </div>
             </nav>
-            <div className="flex justify-center mt-8 space-x-6">
+            {/* <div className="flex justify-center mt-8 space-x-6">
               <a href="#" className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">Facebook</span>
                 <svg
@@ -130,7 +130,7 @@ const Footer = () => {
                   />
                 </svg>
               </a>
-            </div>
+            </div> */}
             <p className="mt-8 text-base leading-6 text-center text-gray-400">
               © 2021 ByteDrop, Inc. All rights reserved.
             </p>

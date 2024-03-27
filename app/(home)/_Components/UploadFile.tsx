@@ -11,6 +11,7 @@ const UploadFile: React.FC = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [docid, setDocid] = useState<string | undefined>();
   const uid = new ShortUniqueId();
+  const MAX_FILE_SIZE_BYTES = 1024 * 1024; // 1 MB
 
   const handleSubmit = async () => {
     try {
@@ -20,6 +21,13 @@ const UploadFile: React.FC = () => {
       }
 
       const file = selectedFiles[0];
+
+      // Check file size
+      if (file.size > MAX_FILE_SIZE_BYTES) {
+        console.log("File size exceeds the maximum limit (1MB).");
+        return;
+      }
+
       const storageRef = ref(datastore, file.name);
       await uploadBytes(storageRef, file);
       const datastoreurl = await getDownloadURL(storageRef);
@@ -51,9 +59,9 @@ const UploadFile: React.FC = () => {
     <div className="flex items-center justify-center">
       <div className="pt-36 flex">
         <div className="extraOutline p-4 bg-white w-max bg-whtie m-auto rounded-lg">
-          <div className="file_upload p-5 relative border-4 border-dotted border-gray-300 rounded-lg w-[450px]">
+          <div className="file_upload p-3 md:p-5 relative border-4 border-dotted border-gray-300 rounded-lg w-[450px]">
             <svg
-              className="text-[#8a2be2] w-24 mx-auto mb-4"
+              className="text-[#8a2be2] w-14 md:w-24 mx-auto mb-4"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -67,7 +75,7 @@ const UploadFile: React.FC = () => {
               />
             </svg>
             <div className="input_field flex flex-col w-max mx-auto text-center">
-              <div className="flex space-x-4">
+              <div className="flex items-center justify-center space-x-4">
                 <label>
                   <input
                     className="text-sm cursor-pointer w-36 hidden"
@@ -75,7 +83,7 @@ const UploadFile: React.FC = () => {
                     multiple
                     onChange={handleFileChange}
                   />
-                  <div className="flex items-center justify-center text-xl bg-[#8a2be2] text-white border border-gray-300 font-semibold cursor-pointer py-2 px-3 hover:bg-indigo-500 rounded-xl">
+                  <div className="flex items-center justify-center text-md md:text-xl bg-[#8a2be2] text-white border border-gray-300 font-semibold cursor-pointer py-2 px-3 hover:bg-indigo-500 rounded-xl">
                     {selectedFiles.length > 0
                       ? `${selectedFiles.length} file selected`
                       : "Select Files"}
@@ -83,7 +91,7 @@ const UploadFile: React.FC = () => {
                   </div>
                 </label>
                 <div
-                  className="flex items-center justify-center text-xl bg-[#8a2be2] text-white border border-gray-300 font-semibold cursor-pointer py-2 px-3 hover:bg-indigo-500 rounded-xl"
+                  className="flex items-center justify-center text-md md:text-xl bg-[#8a2be2] text-white border border-gray-300 font-semibold cursor-pointer py-2 px-3 hover:bg-indigo-500 rounded-xl"
                   onClick={handleSubmit}
                 >
                   Upload <Send className="ml-2 h-6" />
@@ -95,8 +103,8 @@ const UploadFile: React.FC = () => {
                 </span>
               )}
 
-              <div className="text-xl mt-6 text-black uppercase">
-                or drop files here
+              <div className="text-md md:text-xl mt-6 text-black uppercase">
+                or drop files here (file size: 1 mb)
               </div>
             </div>
           </div>

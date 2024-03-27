@@ -87,7 +87,7 @@ const Navbar = () => {
               />
             </svg>
           </li>
-          <li>
+          {/* <li>
             <Link
               className="text-sm text-gray-400 hover:text-gray-500"
               href="/Pricing"
@@ -110,7 +110,7 @@ const Navbar = () => {
                 d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
               />
             </svg>
-          </li>
+          </li> */}
           <li>
             <Link
               className="text-sm text-gray-400 hover:text-gray-500"
@@ -120,7 +120,7 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-        <div className="h-20 w-20 overflow-hidden rounded-full ring-2 ring-gray-700 dark:ring-gray-100">
+        <div className="h-14 w-14 md:h-20 md:w-20 overflow-hidden rounded-full ring-2 ring-gray-700 dark:ring-gray-100">
           <img src={Profileimg[randomIndex]} alt="" />
         </div>
       </nav>
@@ -179,14 +179,14 @@ const Navbar = () => {
                   Services
                 </a>
               </li>
-              <li className="mb-1">
+              {/* <li className="mb-1">
                 <a
                   className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
                   href="#"
                 >
                   Pricing
                 </a>
-              </li>
+              </li> */}
               <li className="mb-1">
                 <a
                   className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
@@ -197,7 +197,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <div className="mt-auto">
+          {/* <div className="mt-auto">
             <div className="pt-6">
               <a
                 className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold bg-gray-50 hover:bg-gray-100 rounded-xl"
@@ -215,7 +215,7 @@ const Navbar = () => {
             <p className="my-4 text-xs text-center text-gray-400">
               <span>Copyright © 2021</span>
             </p>
-          </div>
+          </div> */}
         </nav>
       </div>
     </>

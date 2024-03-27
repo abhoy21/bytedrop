@@ -7,6 +7,7 @@ const Download: React.FC = () => {
   const [userDownload, setUserDownload] = useState<string | undefined>(
     undefined
   );
+  const [showCard, setShowCard] = useState<boolean>(false);
 
   async function getNameByUid(): Promise<void> {
     try {
@@ -17,11 +18,22 @@ const Download: React.FC = () => {
       if (docSnapshot.exists()) {
         const url = docSnapshot.get("url");
         setUserDownload(url);
+        setShowCard(true); // Show the card after getting the download URL
       } else {
         console.log("Document does not exist.");
       }
     } catch (error) {
       console.error("Error getting document:", error);
+    }
+  }
+
+  function hideCard(): void {
+    setShowCard(false);
+  }
+
+  function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>): void {
+    if (event.key === "Enter") {
+      getNameByUid();
     }
   }
 
@@ -33,6 +45,7 @@ const Download: React.FC = () => {
           name="text"
           value={uid}
           onChange={(e) => setUid(e.target.value)}
+          onKeyDown={handleKeyPress} // Added keydown event listener
           placeholder="Search by Code"
           className="bg-transparent outline-none border-none pl-6 pr-10 py-5 w-full font-sans text-lg font-semibold"
         />
@@ -74,7 +87,7 @@ const Download: React.FC = () => {
           </button>
         </div>
       </div>
-      {userDownload ? (
+      {showCard && userDownload && (
         <div className="flex items-center justify-center pt-12">
           <div className="card">
             <div className="icon">
@@ -103,8 +116,8 @@ const Download: React.FC = () => {
             </div>
 
             <div className="content">
-              <span className="title">Hola Amigo!</span>
-              <div className="desc">
+              <span className="title text-lg md:text-2xl">Hola Amigo!</span>
+              <div className="desc hidden md:flex">
                 This File is now available for download.
               </div>
               <div className="actions">
@@ -115,14 +128,14 @@ const Download: React.FC = () => {
                 </div>
 
                 <div>
-                  <a href="#" className="notnow">
+                  <a href="#" className="notnow" onClick={hideCard}>
                     Cancel
                   </a>
                 </div>
               </div>
             </div>
 
-            <button type="button" className="close">
+            <button type="button" className="close" onClick={hideCard}>
               <svg
                 aria-hidden="true"
                 fill="currentColor"
@@ -138,10 +151,6 @@ const Download: React.FC = () => {
             </button>
           </div>
         </div>
-      ) : (
-        <span className="text-xl md:text-5xl my-16 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 py-4 font-bold">
-          Enter Search Code to get the file
-        </span>
       )}
     </div>
   );

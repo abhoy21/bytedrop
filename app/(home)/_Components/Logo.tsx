@@ -9,9 +9,15 @@ const font = Poppins({
 
 export const Logo = () => {
   return (
-    <div className="flex items-center gap-x-2 mx-8">
+    <div className="flex items-center gap-x-2 mr-8 md:mx-8">
       <a href="/" className="flex items-center">
-        <Image src={logo_img} height="60" width="60" alt="Logo" />
+        <Image
+          src={logo_img}
+          height="60"
+          width="60"
+          alt="Logo"
+          className="h-14 w-14 md:h-20 md:w-20"
+        />
       </a>
     </div>
   );
