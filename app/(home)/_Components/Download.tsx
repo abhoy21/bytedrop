@@ -1,0 +1,150 @@
+"use client";
+import React, { useState } from "react";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+
+const Download: React.FC = () => {
+  const [uid, setUid] = useState<string>("");
+  const [userDownload, setUserDownload] = useState<string | undefined>(
+    undefined
+  );
+
+  async function getNameByUid(): Promise<void> {
+    try {
+      const db = getFirestore();
+      const docRef = doc(db, "tempud", uid);
+      const docSnapshot = await getDoc(docRef);
+
+      if (docSnapshot.exists()) {
+        const url = docSnapshot.get("url");
+        setUserDownload(url);
+      } else {
+        console.log("Document does not exist.");
+      }
+    } catch (error) {
+      console.error("Error getting document:", error);
+    }
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center pt-36">
+      <div className="relative rounded-full overflow-hidden bg-white shadow-xl w-3/4">
+        <input
+          type="text"
+          name="text"
+          value={uid}
+          onChange={(e) => setUid(e.target.value)}
+          placeholder="Search by Code"
+          className="bg-transparent outline-none border-none pl-6 pr-10 py-5 w-full font-sans text-lg font-semibold"
+        />
+        <div className="absolute right-2 top-[0.4em]">
+          <button
+            className="w-14 h-14 rounded-full bg-violet-500 group shadow-xl flex items-center justify-center relative overflow-hidden"
+            onClick={getNameByUid}
+          >
+            <svg
+              width={50}
+              height={50}
+              viewBox="0 0 64 64"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="relative z-10"
+            >
+              <path
+                d="M63.6689 29.0491L34.6198 63.6685L0.00043872 34.6194L29.0496 1.67708e-05L63.6689 29.0491Z"
+                fill="white"
+                fillOpacity="0.01"
+              />
+              <path
+                d="M42.8496 18.7067L21.0628 44.6712"
+                stroke="white"
+                strokeWidth="3.76603"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M26.9329 20.0992L42.85 18.7067L44.2426 34.6238"
+                stroke="white"
+                strokeWidth="3.76603"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <div className="w-full h-full rotate-45 absolute left-[32%] top-[32%] bg-black group-hover:-left-[100%] group-hover:-top-[100%] duration-1000" />
+            <div className="w-full h-full -rotate-45 absolute -left-[32%] -top-[32%] group-hover:left-[100%] group-hover:top-[100%] bg-black duration-1000" />
+          </button>
+        </div>
+      </div>
+      {userDownload ? (
+        <div className="flex items-center justify-center pt-12">
+          <div className="card">
+            <div className="icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <g strokeWidth={0} id="SVGRepo_bgCarrier" />
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  id="SVGRepo_tracerCarrier"
+                />
+                <g id="SVGRepo_iconCarrier">
+                  {" "}
+                  <path
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="1.5"
+                    stroke="#ffffff"
+                    d="M20 14V17.5C20 20.5577 16 20.5 12 20.5C8 20.5 4 20.5577 4 17.5V14M12 15L12 3M12 15L8 11M12 15L16 11"
+                  />{" "}
+                </g>
+              </svg>
+            </div>
+
+            <div className="content">
+              <span className="title">Hola Amigo!</span>
+              <div className="desc">
+                This File is now available for download.
+              </div>
+              <div className="actions">
+                <div>
+                  <a href={userDownload} className="download" download>
+                    Download
+                  </a>
+                </div>
+
+                <div>
+                  <a href="#" className="notnow">
+                    Cancel
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" className="close">
+              <svg
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      ) : (
+        <span className="text-xl md:text-5xl my-16 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 py-4 font-bold">
+          Enter Search Code to get the file
+        </span>
+      )}
+    </div>
+  );
+};
+
+export default Download;
