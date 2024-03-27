@@ -66,26 +66,28 @@ const UploadFile: React.FC = () => {
               />
             </svg>
             <div className="input_field flex flex-col w-max mx-auto text-center">
-              <label className="flex space-x-4">
-                <input
-                  className="text-sm cursor-pointer w-36 hidden"
-                  type="file"
-                  multiple
-                  onChange={handleFileChange}
-                />
-                <div className="flex items-center justify-center text-xl bg-[#8a2be2] text-white border border-gray-300 font-semibold cursor-pointer py-2 px-3 hover:bg-indigo-500 rounded-xl">
-                  {selectedFiles.length > 0
-                    ? `${selectedFiles.length} file(s) selected`
-                    : "Select Files"}
-                  <Folder className="ml-2 h-6" />
-                </div>
+              <div className="flex space-x-4">
+                <label>
+                  <input
+                    className="text-sm cursor-pointer w-36 hidden"
+                    type="file"
+                    multiple
+                    onChange={handleFileChange}
+                  />
+                  <div className="flex items-center justify-center text-xl bg-[#8a2be2] text-white border border-gray-300 font-semibold cursor-pointer py-2 px-3 hover:bg-indigo-500 rounded-xl">
+                    {selectedFiles.length > 0
+                      ? `${selectedFiles.length} file(s) selected`
+                      : "Select Files"}
+                    <Folder className="ml-2 h-6" />
+                  </div>
+                </label>
                 <div
                   className="flex items-center justify-center text-xl bg-[#8a2be2] text-white border border-gray-300 font-semibold cursor-pointer py-2 px-3 hover:bg-indigo-500 rounded-xl"
                   onClick={handleSubmit}
                 >
                   Submit <Send className="ml-2 h-6" />
                 </div>
-              </label>
+              </div>
               {docid && (
                 <span className="mt-10 py-4 text-lg md:text-xl bg-gray-200 rounded-xl">
                   {docid}
