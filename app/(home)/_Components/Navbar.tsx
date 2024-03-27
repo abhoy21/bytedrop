@@ -15,6 +15,12 @@ const Navbar = () => {
     "/avatars/avatar8.jpg",
     "/avatars/avatar9.jpg",
     "/avatars/avatar10.jpg",
+    "/avatrs/avatar11.jpg",
+    "/avatrs/avatar12.jpg",
+    "/avatrs/avatar13.jpg",
+    "/avatrs/avatar14.jpg",
+    "/avatrs/avatar15.jpg",
+    "/avatrs/avatar16.jpg",
   ];
   const [randomIndex, setRandomIndex] = useState(0);
 
