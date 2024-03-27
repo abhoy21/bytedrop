@@ -151,6 +151,13 @@ const Download: React.FC = () => {
             </button>
           </div>
         </div>
+      )}{" "}
+      {!showCard && (
+        <div className="flex items-center justify-center pt-12">
+          <span className="text-lg md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-500 to-purple-500">
+            Enter Search Code to get your file
+          </span>
+        </div>
       )}
     </div>
   );
