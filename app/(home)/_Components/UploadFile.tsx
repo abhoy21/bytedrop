@@ -29,10 +29,11 @@ const UploadFile: React.FC = () => {
       const data = {
         url: datastoreurl,
       };
-      setDocid(uid.rnd());
-      console.log("doc id: ", docid);
-      const docRef = doc(collection(db, "tempud"), docid);
-      console.log(docid);
+      const tempDocid = uid.rnd();
+      setDocid(tempDocid);
+      console.log("doc id: ", tempDocid);
+      const docRef = doc(collection(db, "tempud"), tempDocid);
+      console.log(tempDocid);
       await setDoc(docRef, data);
     } catch (error) {
       console.error("Error uploading file:", error);
@@ -76,7 +77,7 @@ const UploadFile: React.FC = () => {
                   />
                   <div className="flex items-center justify-center text-xl bg-[#8a2be2] text-white border border-gray-300 font-semibold cursor-pointer py-2 px-3 hover:bg-indigo-500 rounded-xl">
                     {selectedFiles.length > 0
-                      ? `${selectedFiles.length} file(s) selected`
+                      ? `${selectedFiles.length} file selected`
                       : "Select Files"}
                     <Folder className="ml-2 h-6" />
                   </div>
@@ -85,7 +86,7 @@ const UploadFile: React.FC = () => {
                   className="flex items-center justify-center text-xl bg-[#8a2be2] text-white border border-gray-300 font-semibold cursor-pointer py-2 px-3 hover:bg-indigo-500 rounded-xl"
                   onClick={handleSubmit}
                 >
-                  Submit <Send className="ml-2 h-6" />
+                  Upload <Send className="ml-2 h-6" />
                 </div>
               </div>
               {docid && (

@@ -120,7 +120,7 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-        <div className="h-24 w-24 overflow-hidden rounded-full ring-2 ring-gray-700 dark:ring-gray-100">
+        <div className="h-20 w-20 overflow-hidden rounded-full ring-2 ring-gray-700 dark:ring-gray-100">
           <img src={Profileimg[randomIndex]} alt="" />
         </div>
       </nav>
