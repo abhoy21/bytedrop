@@ -32,7 +32,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>{" "}
-      <div className="w-full pt-2 fixed bottom-0">
+      <div className="w-full relative bottom-0">
         <Footer />
       </div>
     </>
