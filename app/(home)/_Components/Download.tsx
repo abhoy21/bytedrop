@@ -38,7 +38,7 @@ const Download: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center pt-36">
+    <div className="flex flex-col items-center justify-center pt-8 md:pt-36">
       <div className="relative rounded-full overflow-hidden bg-white shadow-xl w-3/4">
         <input
           type="text"
