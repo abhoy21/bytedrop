@@ -6,6 +6,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { datastore, db } from "../../../firebase";
 import ShortUniqueId from "short-unique-id";
+import { toast } from "react-toastify";
 
 const UploadFile: React.FC = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
@@ -25,6 +26,9 @@ const UploadFile: React.FC = () => {
       // Check file size
       if (file.size > MAX_FILE_SIZE_BYTES) {
         console.log("File size exceeds the maximum limit (1MB).");
+        const notify = () =>
+          toast.error("File size exceeds the maximum limit (1MB).");
+        notify();
         return;
       }
 
@@ -43,8 +47,13 @@ const UploadFile: React.FC = () => {
       const docRef = doc(collection(db, "tempud"), tempDocid);
       console.log(tempDocid);
       await setDoc(docRef, data);
+      const notify = () => toast.success("Upload Successfull");
+      notify();
     } catch (error) {
       console.error("Error uploading file:", error);
+      const notify = () =>
+        toast.error("Error uploading File, Check for file size Limit once!");
+      notify();
     }
   };
 

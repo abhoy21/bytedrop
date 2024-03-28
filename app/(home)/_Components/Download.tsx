@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const Download: React.FC = () => {
   const [uid, setUid] = useState<string>("");
@@ -19,6 +20,8 @@ const Download: React.FC = () => {
         const url = docSnapshot.get("url");
         setUserDownload(url);
         setShowCard(true); // Show the card after getting the download URL
+        const notify = () => toast.success("File Found!");
+        notify();
       } else {
         console.log("Document does not exist.");
       }
@@ -153,9 +156,13 @@ const Download: React.FC = () => {
         </div>
       )}{" "}
       {!showCard && (
-        <div className="flex items-center justify-center pt-12">
-          <span className="text-lg md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-500 to-purple-500">
-            Enter Search Code to get your file
+        <div className="flex items-center justify-center pt-14">
+          <span className="md:flex text-3xl md:text-5xl text-gray-800 justify-center">
+            <p className="text-gray-700 font-bold mr-4">Enter</p>
+            <p className="text-purple-500 text-underline font-bold mr-4">
+              Search Code
+            </p>
+            <p className="text-gray-700 font-bold">to get your files</p>
           </span>
         </div>
       )}

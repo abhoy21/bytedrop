@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
+
 .card {
   min-width: 20em;
   display: flex;
