@@ -19,6 +19,9 @@ export const Logo = () => {
           className="h-14 w-14 md:h-20 md:w-20"
         />
       </a>
+      <span className="ml-2 font-mono text-purple-500 text-xl md:text-4xl">
+        Bytedrop
+      </span>
     </div>
   );
 };
