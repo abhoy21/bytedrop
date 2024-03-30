@@ -5,7 +5,7 @@ const About = () => {
     <div>
       <>
         {/* component */}
-        <div className="bg-white relative   flex items-center  n justify-center overflow-hidden z-50 ">
+        <div className="bg-transparent relative   flex items-center  n justify-center overflow-hidden z-50 ">
           <div className="relative mx-auto h-full px-4  pb-20   md:pb-10 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
             <div className="flex flex-col items-center justify-between lg:flex-row py-16">
               <div className=" relative ">
@@ -19,7 +19,7 @@ const About = () => {
                   <p className="flex text-sm uppercase text-g1  ">About Us</p>
                   <h2 className="mb-6 max-w-lg text-5xl font-light leading-snug tracking-tight text-g1 sm:text-7xl sm:leading-snug">
                     We make Sharing Files
-                    <span className="my-1 inline-block border-b-8 border-g4 bg-white px-4 font-bold text-g4 animate__animated animate__flash">
+                    <span className="my-1 inline-block border-b-8 border-g4 bg-transparent px-4 font-bold text-g4 animate__animated animate__flash">
                       Seemless
                     </span>
                   </h2>
@@ -65,7 +65,7 @@ const About = () => {
               <div className="relative hidden lg:ml-32 lg:block lg:w-1/2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="my-6 mx-auto h-10 w-10 animate-bounce rounded-full bg-white p-2 lg:hidden"
+                  className="my-6 mx-auto h-10 w-10 animate-bounce rounded-full bg-transparent p-2 lg:hidden"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

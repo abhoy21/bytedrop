@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="relative px-4 py-4 flex justify-between items-center bg-white">
+      <nav className="relative px-4 py-4 flex justify-between items-center bg-transparent">
         <a className="text-3xl font-bold leading-none" href="#">
           <Logo />
         </a>
