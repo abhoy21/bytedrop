@@ -13,7 +13,7 @@ const HomePage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {/* Upload Section */}
           <div
-            className="col-span-1 bg-white bg-opacity-60 border-2 border-white pt-4 md:pt-8 h-[30em] md:h-[50em] overflow-hidden md:overflow-visible px-4 md:px-0  md:rounded-[5em]"
+            className="col-span-1 bg-white bg-opacity-60 border-2 border-white pt-4 lg:pt-8 h-[30em] lg:h-[50em] overflow-hidden md:overflow-hidden px-4 md:px-0  md:rounded-[5em]"
             // style={{ backgroundImage: "url('/upload_bg.svg')" }}
           >
             <span className="md:flex text-3xl md:text-5xl text-gray-700 justify-center md:pt-16">
@@ -26,7 +26,7 @@ const HomePage = () => {
           </div>
           {/* Download Section */}
           <div
-            className="col-span-1 bg-white bg-opacity-50 border-2 border-white py-4 md:py-8 h-[30em] md:h-[50em] overflow-hidden md:overflow-visible md:pt-0 md:rounded-[5em]"
+            className="col-span-1 bg-white bg-opacity-50 border-2 border-white py-4 lg:py-8 h-[30em] lg:h-[50em] overflow-hidden md:overflow-visible md:pt-0 md:rounded-[5em]"
             // style={{
             //   backgroundImage: "url('/download_bg.svg')",
             // }}

@@ -66,7 +66,7 @@ const UploadFile: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="pt-8 pb-16 md:pt-36 md:pb-0 flex">
+      <div className="pt-8 pb-16 md:pt-18 lg:pt-24 md:pb-0 flex">
         <div className="extraOutline p-4 bg-white w-max bg-whtie m-auto rounded-lg">
           <div className="file_upload p-3 md:p-5 relative border-4 border-dotted border-gray-300 rounded-lg w-[450px]">
             <svg
