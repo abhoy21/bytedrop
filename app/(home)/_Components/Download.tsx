@@ -55,9 +55,9 @@ const Download: React.FC = () => {
         const blob = await response.blob();
 
         // Extracting filename from URL
-        const filename = userDownload.substring(
-          userDownload.lastIndexOf(".") + 1
-        );
+        const startIndex = userDownload.lastIndexOf("/") + 1;
+        const endIndex = userDownload.indexOf("?");
+        const filename = userDownload.substring(startIndex, endIndex);
 
         FileSaver.saveAs(blob, filename);
       } catch (error) {
