@@ -36,12 +36,30 @@ const Download: React.FC = () => {
     setShowCard(false);
   }
 
+  // async function handleDownloadClick(): Promise<void> {
+  //   if (userDownload) {
+  //     try {
+  //       const response = await fetch(userDownload);
+  //       const blob = await response.blob();
+  //       FileSaver.saveAs(blob, "file.pdf");
+  //     } catch (error) {
+  //       console.error("Error downloading file:", error);
+  //     }
+  //   }
+  // }
+
   async function handleDownloadClick(): Promise<void> {
     if (userDownload) {
       try {
         const response = await fetch(userDownload);
         const blob = await response.blob();
-        FileSaver.saveAs(blob, "file.pdf");
+
+        // Extracting filename from URL
+        const filename = userDownload.substring(
+          userDownload.lastIndexOf(".") + 1
+        );
+
+        FileSaver.saveAs(blob, filename);
       } catch (error) {
         console.error("Error downloading file:", error);
       }
