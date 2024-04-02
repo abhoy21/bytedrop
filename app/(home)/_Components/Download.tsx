@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
+import * as FileSaver from "file-saver";
 
 const Download: React.FC = () => {
   const [uid, setUid] = useState<string>("");
@@ -22,6 +23,7 @@ const Download: React.FC = () => {
         setShowCard(true); // Show the card after getting the download URL
         const notify = () => toast.success("File Found!");
         notify();
+        console.log(url);
       } else {
         console.log("Document does not exist.");
       }
@@ -32,6 +34,18 @@ const Download: React.FC = () => {
 
   function hideCard(): void {
     setShowCard(false);
+  }
+
+  async function handleDownloadClick(): Promise<void> {
+    if (userDownload) {
+      try {
+        const response = await fetch(userDownload);
+        const blob = await response.blob();
+        FileSaver.saveAs(blob, "file.pdf");
+      } catch (error) {
+        console.error("Error downloading file:", error);
+      }
+    }
   }
 
   function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>): void {
@@ -125,7 +139,11 @@ const Download: React.FC = () => {
               </div>
               <div className="actions">
                 <div>
-                  <a href={userDownload} className="download" download>
+                  <a
+                    href="#"
+                    className="download"
+                    onClick={handleDownloadClick}
+                  >
                     Download
                   </a>
                 </div>
