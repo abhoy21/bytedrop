@@ -1,17 +1,20 @@
-"use client";
 import React, { useState } from "react";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import * as FileSaver from "file-saver";
+import { ScanEye, Download, CircleX } from "lucide-react";
+import Loader from "./Loader";
 
-const Download: React.FC = () => {
+const DownloadFile: React.FC = () => {
   const [uid, setUid] = useState<string>("");
   const [userDownload, setUserDownload] = useState<string | undefined>(
     undefined
   );
   const [showCard, setShowCard] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   async function getNameByUid(): Promise<void> {
+    setLoading(true);
     try {
       const db = getFirestore();
       const docRef = doc(db, "tempud", uid);
@@ -20,7 +23,6 @@ const Download: React.FC = () => {
       if (docSnapshot.exists()) {
         const url = docSnapshot.get("url");
         setUserDownload(url);
-        setShowCard(true); // Show the card after getting the download URL
         const notify = () => toast.success("File Found!");
         notify();
         console.log(url);
@@ -29,24 +31,17 @@ const Download: React.FC = () => {
       }
     } catch (error) {
       console.error("Error getting document:", error);
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+        setShowCard(true);
+      }, 1500);
     }
   }
 
   function hideCard(): void {
     setShowCard(false);
   }
-
-  // async function handleDownloadClick(): Promise<void> {
-  //   if (userDownload) {
-  //     try {
-  //       const response = await fetch(userDownload);
-  //       const blob = await response.blob();
-  //       FileSaver.saveAs(blob, "file.pdf");
-  //     } catch (error) {
-  //       console.error("Error downloading file:", error);
-  //     }
-  //   }
-  // }
 
   async function handleDownloadClick(): Promise<void> {
     if (userDownload) {
@@ -122,6 +117,13 @@ const Download: React.FC = () => {
           </button>
         </div>
       </div>
+      {loading && (
+        <div className="flex items-center justify-center pt-12">
+          <div>
+            <Loader />
+          </div>
+        </div>
+      )}
       {showCard && userDownload && (
         <div className="flex items-center justify-center pt-12">
           <div className="card">
@@ -152,29 +154,49 @@ const Download: React.FC = () => {
 
             <div className="content">
               <span className="title text-lg md:text-2xl">Hola Amigo!</span>
-              <div className="desc hidden md:flex">
+              <div className="desc flex">
                 This File is now available for download.
               </div>
               <div className="actions">
                 <div>
                   <a
-                    href="#"
-                    className="download"
-                    onClick={handleDownloadClick}
+                    href={userDownload}
+                    className="preview items-center hover:bg-fuchsia-200 hover:text-gray-700 duration-300 ease-in-out"
                   >
-                    Download
+                    <span className="hidden md:flex">Preview</span>
+                    <ScanEye className="w-6 h-6 md:ml-2" />
                   </a>
                 </div>
 
                 <div>
-                  <a href="#" className="notnow" onClick={hideCard}>
-                    Cancel
+                  <a
+                    href="#"
+                    className="download items-center hover:bg-purple-400 hover:text-gray-900 duration-300 ease-in-out"
+                    onClick={handleDownloadClick}
+                  >
+                    <span className="hidden md:flex">Download</span>
+                    <Download className="w-6 h-6 md:ml-2" />
+                  </a>
+                </div>
+
+                <div>
+                  <a
+                    href="#"
+                    className="notnow items-center hover:bg-red-300 hover:text-gray-900 duration-300 ease-in-out"
+                    onClick={hideCard}
+                  >
+                    <span className="hidden md:flex">Cancel</span>
+                    <CircleX className="w-6 h-6 md:ml-2" />
                   </a>
                 </div>
               </div>
             </div>
 
-            <button type="button" className="close" onClick={hideCard}>
+            <button
+              type="button"
+              className="close hover:bg-gray-400 duration-300 ease-in-out"
+              onClick={hideCard}
+            >
               <svg
                 aria-hidden="true"
                 fill="currentColor"
@@ -190,7 +212,7 @@ const Download: React.FC = () => {
             </button>
           </div>
         </div>
-      )}{" "}
+      )}
       {!showCard && (
         <div className="flex items-center justify-center pt-14">
           <span className="md:flex text-3xl md:text-5xl text-gray-800 justify-center">
@@ -206,4 +228,4 @@ const Download: React.FC = () => {
   );
 };
 
-export default Download;
+export default DownloadFile;

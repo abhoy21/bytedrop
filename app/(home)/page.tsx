@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import UploadFile from "./_Components/UploadFile";
-import Download from "./_Components/Download";
+
 import Footer from "./_Components/Footer";
+import DownloadFile from "./_Components/Download";
 
 const HomePage = () => {
   return (
@@ -31,7 +33,7 @@ const HomePage = () => {
             //   backgroundImage: "url('/download_bg.svg')",
             // }}
           >
-            <Download />
+            <DownloadFile />
           </div>
         </div>
 
