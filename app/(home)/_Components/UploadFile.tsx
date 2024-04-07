@@ -25,9 +25,9 @@ const UploadFile: React.FC = () => {
 
       // Check file size
       if (file.size > MAX_FILE_SIZE_BYTES) {
-        console.log("File size exceeds the maximum limit (1MB).");
+        console.log("File size exceeds the maximum limit (10MB).");
         const notify = () =>
-          toast.error("File size exceeds the maximum limit (1MB).");
+          toast.error("File size exceeds the maximum limit (10MB).");
         notify();
         return;
       }
@@ -47,8 +47,11 @@ const UploadFile: React.FC = () => {
       const docRef = doc(collection(db, "tempud"), tempDocid);
       console.log(tempDocid);
       await setDoc(docRef, data);
-      const notify = () => toast.success("Upload Successfull");
+      const notify = () => toast.success("Upload Successful");
       notify();
+
+      // Clear selectedFiles state after successful upload
+      setSelectedFiles([]);
     } catch (error) {
       console.error("Error uploading file:", error);
       const notify = () =>
