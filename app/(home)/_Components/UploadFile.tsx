@@ -12,7 +12,7 @@ const UploadFile: React.FC = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [docid, setDocid] = useState<string | undefined>();
   const uid = new ShortUniqueId();
-  const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10 MB in bytes
+  const MAX_FILE_SIZE_BYTES = 1024 * 1024; // 1 MB in bytes
 
   const handleSubmit = async () => {
     try {
@@ -116,7 +116,7 @@ const UploadFile: React.FC = () => {
               )}
 
               <div className="text-md md:text-xl mt-6 text-black uppercase">
-                or drop files here (file size: 10 mb)
+                or drop files here (file size: 1 mb)
               </div>
             </div>
           </div>
