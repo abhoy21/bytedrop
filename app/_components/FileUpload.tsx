@@ -15,12 +15,12 @@ interface FileUploadProps {
 }
 
 const FileUpload: React.FC<FileUploadProps> = ({ onUpload, isUploading }) => {
-  const uid = new ShortUniqueId();
   const MAX_FILE_SIZE_BYTES = 1024 * 1024; // 1 MB in bytes
   const [fileName, setFileName] = useState<string | null>(null);
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
+      const uid = new ShortUniqueId(); // Moved inside the callback
       const file = acceptedFiles[0];
       setFileName(file.name);
 
@@ -59,7 +59,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onUpload, isUploading }) => {
         setFileName(null);
       }
     },
-    [MAX_FILE_SIZE_BYTES, onUpload, uid],
+    [MAX_FILE_SIZE_BYTES, onUpload], // Removed uid from dependencies
   );
 
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
